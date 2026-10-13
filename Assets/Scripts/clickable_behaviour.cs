@@ -6,14 +6,15 @@ public class clickable_behaviour : MonoBehaviour
     [SerializeField]
     private Boolean isTiming;
     private int timer;
+    public Boolean IsClicking = false;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private SoundEffect _clickSound;
+
     void Start()
     {
-
+        _clickSound = GetComponent<SoundEffect>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -25,7 +26,13 @@ public class clickable_behaviour : MonoBehaviour
                 Debug.Log("clicked");
                 isTiming = true;
                 timer = 0;
+                IsClicking = true;
                 transform.localScale = new Vector2(0.9f, 0.9f);
+
+                if (_clickSound != null)
+                {
+                    _clickSound.Play();
+                }
             }
         }
         if (isTiming)
@@ -36,6 +43,8 @@ public class clickable_behaviour : MonoBehaviour
         {
             timer = 0;
             isTiming = false;
+
+            IsClicking = false;
             transform.localScale = new Vector2(1f, 1f);
         }
     }
