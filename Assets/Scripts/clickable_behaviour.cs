@@ -8,6 +8,7 @@ public class clickable_behaviour : MonoBehaviour
     private int timer;
     public Boolean IsClicking = false;
 
+    public Boolean isclicked;
     private SoundEffect _clickSound;
 
     void Start()
@@ -23,6 +24,8 @@ public class clickable_behaviour : MonoBehaviour
             RaycastHit2D clicked = Physics2D.Raycast(mousePos, Vector2.zero);
             if (clicked.collider != null)
             {
+                isclicked = true;
+
                 Debug.Log("clicked");
                 isTiming = true;
                 timer = 0;
@@ -35,6 +38,12 @@ public class clickable_behaviour : MonoBehaviour
                 }
             }
         }
+        else{
+
+            isclicked = false;
+
+        }
+
         if (isTiming)
         {
             timer += 1;
