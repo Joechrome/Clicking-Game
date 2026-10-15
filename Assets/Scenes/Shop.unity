@@ -206,7 +206,7 @@ Transform:
   m_GameObject: {fileID: 303206941}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -514,6 +514,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 802823336}
   m_CullTransparentMesh: 1
+--- !u!1 &814587356
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 814587358}
+  - component: {fileID: 814587357}
+  m_Layer: 0
+  m_Name: Upgrade_manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &814587357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 814587356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1c42916ba0041849917d5e320cc7d32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::upgrades
+--- !u!4 &814587358
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 814587356}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &974835844
 GameObject:
   m_ObjectHideFlags: 0
@@ -1253,6 +1297,7 @@ GameObject:
   - component: {fileID: 1577967892}
   - component: {fileID: 1577967891}
   - component: {fileID: 1577967890}
+  - component: {fileID: 1577967893}
   m_Layer: 5
   m_Name: ChatGPT
   m_TagString: Untagged
@@ -1362,6 +1407,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1577967888}
   m_CullTransparentMesh: 1
+--- !u!114 &1577967893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1577967888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e38222dd418d49c4a9d8edd86c20dbc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Autoclicker
 --- !u!1 &1662701316
 GameObject:
   m_ObjectHideFlags: 0
@@ -1602,6 +1659,7 @@ GameObject:
   - component: {fileID: 1765658696}
   - component: {fileID: 1765658695}
   - component: {fileID: 1765658694}
+  - component: {fileID: 1765658697}
   m_Layer: 5
   m_Name: Gemini
   m_TagString: Untagged
@@ -1711,6 +1769,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1765658692}
   m_CullTransparentMesh: 1
+--- !u!114 &1765658697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1765658692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e38222dd418d49c4a9d8edd86c20dbc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Autoclicker
 --- !u!1 &1800154380
 GameObject:
   m_ObjectHideFlags: 0
@@ -1993,3 +2063,4 @@ SceneRoots:
   - {fileID: 974835846}
   - {fileID: 1662701320}
   - {fileID: 1480454857}
+  - {fileID: 814587358}
