@@ -6,10 +6,12 @@ public class clickable_behaviour : MonoBehaviour
     [SerializeField]
     private Boolean isTiming;
     private int timer;
-    public Boolean IsClicking = false;
-
-    public Boolean isclicked;
     private SoundEffect _clickSound;
+
+    public Boolean IsClicking = false;
+    public Boolean isclicked;
+    public Particles particleSpawner;
+
 
     void Start()
     {
@@ -27,6 +29,10 @@ public class clickable_behaviour : MonoBehaviour
                 isclicked = true;
 
                 Debug.Log("clicked");
+                if (particleSpawner != null)
+                {
+                    particleSpawner.Trigger();
+                }
                 isTiming = true;
                 timer = 0;
                 IsClicking = true;
