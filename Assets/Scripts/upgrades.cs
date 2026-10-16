@@ -1,76 +1,91 @@
-using System.Diagnostics;
-using System.Runtime.ConstrainedExecution;
 using UnityEngine;
 
 public class Upgrade
 {
+    public string Name;
     public string Description;
     public int Cost;
     public bool Owned;
-    public Upgrade(string description,int cost)
+
+    public Upgrade(string name, string description, int cost)
     {
+        Name = name;
         Description = description;
         Cost = cost;
-        Owned = false;
+
+        // Restore the purchase from the save file, so an upgrade bought in an
+        // earlier session still counts as owned.
+        Owned = GameData.IsUpgradeOwned(name);
     }
-    public int purchase(int coins)
+
+    public bool TryPurchase()
     {
-        if (Owned == false)
+        if (Owned)
         {
-            if (coins >= Cost) 
-            {
-                Owned = true;
-                coins -= Cost;
-                return coins;
-            } 
-            else 
-            {
-                return coins;
-            }
+            return false;
         }
-        else
+
+        // Spend() checks the balance itself and changes nothing if the player is
+        // short, so the score and the Owned flag can never disagree.
+        if (!GameData.Spend(Cost))
         {
-            return coins;
+            return false;
         }
+
+        Owned = true;
+        GameData.MarkUpgradeOwned(Name);
+        return true;
     }
 }
 
 public class upgrades : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private Upgrade _autoclicker;
+    private Upgrade _doubleClick;
+    private Upgrade _tripleClick;
+    private Upgrade _quadrupleClick;
+
+    void Awake()
     {
-        coins = 100000;
-        UnityEngine.Debug.Log(coins);
+        _autoclicker = new Upgrade("Autoclicker", "automatically clicks for you", 10000);
+        _doubleClick = new Upgrade("DoubleClick", "each click gives 2 coins", 100);
+        _tripleClick = new Upgrade("TripleClick", "each click gives 3 coins", 200);
+        _quadrupleClick = new Upgrade("QuadrupleClick", "each click gives 4 coins", 300);
     }
-    int coins;
-    Upgrade Autoclicker = new Upgrade("automatically clicks for you",10000);
-    Upgrade DoubleClick = new Upgrade("each click gives 2 coins", 100);
-    Upgrade TripleClick = new Upgrade("each click gives 3 coins", 200);
-    Upgrade QuadrupleClick = new Upgrade("each click gives 4 coins", 300);
+
     public void upgrade_button_press(string upgrade)
     {
-        if (upgrade == "Autoclicker")
+        Upgrade target = Find(upgrade);
+
+        if (target == null)
         {
-            coins = Autoclicker.purchase(coins);
+            // Loud rather than silent. A name that matched nothing used to do
+            // absolutely nothing with no explanation at all.
+            Debug.LogWarning(
+                $"{name}: no upgrade called '{upgrade}'. Check the Upgrade Name on " +
+                "the button matches a name in upgrades.cs.",
+                this);
+            return;
         }
-        else if (upgrade == "DoubleClick")
+
+        if (target.TryPurchase())
         {
-            coins = DoubleClick.purchase(coins);
+            Debug.Log($"Bought {target.Name}. Score left: {GameData.Clicks}");
         }
-        else if (upgrade == "TripleClick")
+        else
         {
-            coins = TripleClick.purchase(coins);
+            Debug.Log(
+                $"Could not buy {target.Name}. Cost {target.Cost}, " +
+                $"score {GameData.Clicks}, already owned: {target.Owned}.");
         }
-        else if (upgrade == "QuadrupleClick")
-        {
-            coins = QuadrupleClick.purchase(coins);
-        }
-        UnityEngine.Debug.Log(coins);
     }
-    // Update is called once per frame
-    void Update()
+
+    private Upgrade Find(string upgrade)
     {
-        
+        if (upgrade == _autoclicker.Name) return _autoclicker;
+        if (upgrade == _doubleClick.Name) return _doubleClick;
+        if (upgrade == _tripleClick.Name) return _tripleClick;
+        if (upgrade == _quadrupleClick.Name) return _quadrupleClick;
+        return null;
     }
 }

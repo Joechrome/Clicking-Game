@@ -29,6 +29,12 @@ public class clickable_behaviour : MonoBehaviour
                 isclicked = true;
 
                 Debug.Log("clicked");
+
+                // Bank the click straight away. The score used to be counted by
+                // Score_Noting polling the isclicked flag on the same frame, and
+                // if that script's Update ran first the click was lost entirely.
+                GameData.AddClick();
+
                 if (particleSpawner != null)
                 {
                     particleSpawner.Trigger();

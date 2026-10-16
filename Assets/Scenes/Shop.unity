@@ -1419,6 +1419,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e38222dd418d49c4a9d8edd86c20dbc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Autoclicker
+  _upgradeButton: {fileID: 1577967890}
+  _upgradeName: Autoclicker
+  _upgradeManager: {fileID: 814587357}
 --- !u!1 &1662701316
 GameObject:
   m_ObjectHideFlags: 0
@@ -1781,6 +1784,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e38222dd418d49c4a9d8edd86c20dbc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Autoclicker
+  _upgradeButton: {fileID: 0}
+  _upgradeName: Autoclicker
+  _upgradeManager: {fileID: 0}
 --- !u!1 &1800154380
 GameObject:
   m_ObjectHideFlags: 0
