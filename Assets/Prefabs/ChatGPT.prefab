@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8621529040088292089}
   - component: {fileID: 6617118298437217656}
   m_Layer: 0
-  m_Name: Particle
+  m_Name: ChatGPT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
